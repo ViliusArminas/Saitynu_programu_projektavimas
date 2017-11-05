@@ -1,0 +1,18 @@
+<div *ngFor="let workout of workouts; let i = index;" class="container">
+  <div class="row">
+    <h2>{{workout.workoutName}} <button (click)="check(workout)"  class="btn btn-grey btn-default">Peržiūrėti</button></h2>
+    <div class="mano-rutina issaugota">
+      <div  *ngFor="let workoutExercise of workout.exercises;" class="col-xs-4">
+        <div class="thumbnail">
+          <img alt="100%x200" data-src="holder.js/100%x200" src="{{workoutExercise.exerciseImageFirst}}"
+            data-holder-rendered="true" style="height: 150px; width: 49%; display: inline-block;">
+          <img alt="100%x200" data-src="holder.js/100%x200" src="{{workoutExercise.exerciseImageFirst}}"
+            data-holder-rendered="true" style="height: 150px; width: 49%; display: inline-block;">
+          <div class="caption">
+            <p>{{workoutExercise.exerciseName}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

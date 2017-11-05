@@ -1,0 +1,73 @@
+<div class="row text-center">
+  <div class="col-md-4">
+    <div class="btn-group">
+      <div
+        class="btn btn-grey btn-default"
+        mwlCalendarPreviousView
+        [view]="view"
+        [(viewDate)]="viewDate">
+        Ankstesnis
+      </div>
+      <div
+        class="btn btn-grey btn-default"
+        mwlCalendarToday
+        [(viewDate)]="viewDate">
+        Šiandien
+      </div>
+      <div
+        class="btn btn-grey btn-default"
+        mwlCalendarNextView
+        [view]="view"
+        [(viewDate)]="viewDate">
+        Sekantis
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'Lt' }}</h3>
+  </div>
+  <div class="col-md-4">
+    <div class="btn-group">
+      <div
+        class="btn  btn-grey btn-default"
+        (click)="view = 'month'"
+        [class.active]="view === 'month'">
+        
+        Mėnesis
+      </div>
+      <div
+        class="btn btn-grey btn-default"
+        (click)="view = 'week'"
+        [class.active]="view === 'week'">
+        Savaitė
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+
+<div [ngSwitch]="view">
+  <mwl-calendar-month-view
+    *ngSwitchCase="'month'"
+    [viewDate]="viewDate"
+    [events]="calendarEvents"
+    [locale]="locale"
+    [refresh]="refresh"
+    [activeDayIsOpen]="activeDayIsOpen"
+    (dayClicked)="dayClicked($event.day)"
+    (eventClicked)="handleEvent('Clicked', $event.event)">
+  </mwl-calendar-month-view>
+  <mwl-calendar-week-view
+    *ngSwitchCase="'week'"
+    [viewDate]="viewDate"
+    [events]="calendarEvents"
+    [locale]="locale"
+    [refresh]="refresh"
+    (eventClicked)="handleEvent('Clicked', $event.event)">
+  </mwl-calendar-week-view>
+</div>
+
+<br><br><br>
+
+
+

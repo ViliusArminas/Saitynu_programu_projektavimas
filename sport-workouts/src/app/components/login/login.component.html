@@ -1,0 +1,52 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<div class="panel panel-login">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-xs-12">
+							<a class="active text-center" id="login-form-link">Prisijungimas</a>
+						</div>
+					</div>
+					<hr>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-lg-12">
+							<form style="display: block;">
+								<div class="form-group">
+									<input [(ngModel)]="username" name="username" type="text" tabindex="1" class="form-control" placeholder="El. paštas" value="">
+								</div>
+								<div class="form-group">
+									<input [(ngModel)]="password" name="password" type="password" tabindex="2" class="form-control" placeholder="Slaptažodis">
+								</div>
+								<div class="form-group">
+									<div class="row">
+										<div class="col-sm-6 col-sm-offset-3">
+											<button (click)="login()" tabindex="4" class="form-control btn btn-login">Prisijungti</button>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="row">
+										<div class="col-lg-12">
+											<div class="text-center">
+												<a tabindex="5" class="forgot-password">Norite užsiregistruoti?</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div *ngIf="wrongCredentials" class="container">
+	<div class="alert alert-danger alert-dismissable fade in">
+		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		<strong>Prisijungimas nepavyko!</strong> Neteisingai įvestas vartotojo vardas arba slaptažodis
+  </div>
+</div>

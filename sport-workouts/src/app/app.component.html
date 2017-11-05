@@ -1,0 +1,35 @@
+<nav class="navbar navbar-default navbar-static-top">
+       <div class="container">
+        <div class="navbar-header">
+             
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">
+              <img alt="Brand" src="assets/images/training.png" style="display: inline-block;">Sporto klubas
+            </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li *ngIf="isLoggedIn()" ><a routerLink="build-workout/new">Pridėti rutiną</a></li>
+            <li *ngIf="isLoggedIn()"><a routerLink="workout-calendar">Kalendorius</a></li>
+            <li *ngIf="isLoggedIn()" ><a routerLink="view-exercises">Pratimai</a></li>
+            <li *ngIf="isLoggedIn()"><a routerLink="my-workouts">Rutinos</a></li>
+            <li><a *ngIf="!isLoggedIn()" routerLink="login" >Prisijungti</a></li>
+
+            <li *ngIf="isLoggedIn()" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{userName}}<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a *ngIf="isLoggedIn()" (click)="logout()">Atsijungti</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class = "container">
+      <router-outlet></router-outlet>
+      </div>

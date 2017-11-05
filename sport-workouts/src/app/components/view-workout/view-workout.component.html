@@ -1,0 +1,31 @@
+  <div *ngIf="isLoading">Siunčiami duomenys...</div>
+  <div *ngIf="!isLoading">
+<div class="container">
+  <div class="row">
+    <h2 class="text-center">{{workout.workoutName}}</h2>  
+  <button (click)="edit(workout)"  class="btn btn-grey btn-default text-center">Redaguoti</button>
+  <h2> Rutinos raumenų grupės </h2>
+    <div *ngFor="let muscleGroup of workout.muscleGroups; let i = index">
+      <p>{{muscleGroup.muscleGroupName}}</p>            
+    </div>
+    <h2> Rutinos laikai </h2>
+    <div *ngFor="let workoutDay of workout.workoutDays; let i = index">
+    <p>Mėnesio savaitė: {{workoutDay.workoutDayMonthWeek}} Savaitės diena: {{workoutDay.workoutDayWeekDay}}</p>              
+    </div>
+    <h2> Pratimai </h2>
+    <div class="mano-rutina issaugota">
+      <div  *ngFor="let workoutExercise of workout.exercises;" class="col-xs-4">
+        <div class="thumbnail">
+          <img alt="100%x200" data-src="holder.js/100%x200" src="{{workoutExercise.exerciseImageFirst}}"
+            data-holder-rendered="true" style="height: 150px; width: 49%; display: inline-block;">
+          <img alt="100%x200" data-src="holder.js/100%x200" src="{{workoutExercise.exerciseImageFirst}}"
+            data-holder-rendered="true" style="height: 150px; width: 49%; display: inline-block;">
+          <div class="caption">
+            <p>{{workoutExercise.exerciseName}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

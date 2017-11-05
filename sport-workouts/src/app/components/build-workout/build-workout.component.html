@@ -1,0 +1,77 @@
+<div class="container">
+  <div *ngIf="isLoading">Siunčiami duomenys...</div>
+  <div *ngIf="!isLoading">
+    <div *ngIf="workout">
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Mano rutina</h2>
+          <div class="mano-rutina">
+            <div *ngFor="let exercise of workout.exercises; let i = index" class="col-md-12">
+              <div class="thumbnail">
+                <img alt="100%x200" data-src="holder.js/100%x200" src="{{exercise.exerciseImageFirst}}" data-holder-rendered="true" style="height: 150px; width: 49%; display: inline-block;">
+                <img alt="100%x200" data-src="holder.js/100%x200" src="{{exercise.exerciseImageSecond}}" data-holder-rendered="true" style="height: 150px; width: 49%; display: inline-block;">
+                <div class="caption">
+                  <p>{{exercise.exerciseName}}</p>
+                  <button (click)="remove(i)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="form-horizontal">
+                <div class="col-sm-5">
+                  <div class="form-group">
+                    <div class="col-sm-8">
+                      <label>Pavadinimas</label>
+                      <input required=""  [(ngModel)]="workout.workoutName" type="text" class="form-control " placeholder="Pavadinimas">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <!--<div class="col-sm-8">-->
+                      <label>Raumenų kategorija:</label>
+                      <div class="form-group" *ngFor="let group of muscleGroups; let i = index">
+                        <input type="checkbox" name="fancy-checkbox" id="option{{i}}" [(ngModel)]="checkedArray[i]" autocomplete="off" />
+                        <div class="btn-group col-sm-5">
+                            <label for="option{{i}}" class="btn btn-default">
+                                <span class="glyphicon glyphicon-ok"></span>
+                                <span> </span>
+                            </label>
+                            <label for="option{{i}}" class="btn btn-default active">
+                                {{group.muscleGroupName}}
+                            </label>
+                        </div>
+                    </div>
+                      <!-- </div>-->
+                  </div>
+                  <div class="form-group col-sm-10">
+                    <div *ngIf="workout">
+                      <div *ngFor="let workoutDay of workout.workoutDays; let i = index">
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <label>Rutinos laikas {{ i + 1}}</label>
+                            <span class="btn btn-danger pull-right glyphicon glyphicon-minus" *ngIf="workout.workoutDays.length > 1" (click)="removeWorkoutDay(i)"></span>
+                          </div>
+                          <div class="panel-body">
+                            <app-workout-day [workoutDays]="workout.workoutDays[i]"></app-workout-day>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <button (click)='addWorkoutDay()' class="btn  btn-grey btn-default"><span class="glyphicon glyphicon-plus"></span><strong> Daugiau laikų</strong></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button (click)="save()" class="btn btn-grey btn-default pull-right">Išsaugoti</button>
+          <br>
+        </div>
+        <div class="col-md-8">
+          <app-exercise-groups (selectEvent)="selectMuscleGroup($event)"></app-exercise-groups>
+          <app-exercise (addEvent)="addExercise($event)"></app-exercise>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+
+<div class="row" style="margin-top: 20px;">
+  <div *ngIf="isLoading">Siunčiami duomenys...</div>
+  <div *ngIf="!isLoading">
+    <div *ngFor="let i of exercises; let ind = index" class="col-xs-6">
+      <div class="thumbnail">
+        <img alt="100%x200" data-src="holder.js/100%x200" src="{{i.exerciseImageFirst}}" data-holder-rendered="true" style="height: 150px; width: 49%; display: inline-block;">
+        <img alt="100%x200" data-src="holder.js/100%x200" src="{{i.exerciseImageSecond}}" data-holder-rendered="true" style="height: 150px; width: 49%; display: inline-block;">
+        <div class="caption">
+          <p>{{i.exerciseName}}</p>
+          <button (click)="add(ind)" class="btn btn-grey btn-default"><span class="glyphicon glyphicon-plus"></span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+   <div *ngIf="isEmpty">
+    <h3 class="text-center">Kategorija tuščia</h3>
+   </div>
+</div>

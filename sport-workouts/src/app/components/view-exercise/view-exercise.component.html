@@ -1,0 +1,19 @@
+  <button *ngIf="!exercise" (click)="addNewExercise()" class="btn btn-grey btn-primary">Pridėti pratimą</button>
+  <app-add-exercise *ngIf="exercise" [exerciseDetails]="exercise" (saveEvent)="saveExercise($event)"></app-add-exercise>
+<app-exercise-groups (selectEvent)="selectMuscleGroup($event)"></app-exercise-groups>
+<div class="row" style="margin-top: 20px;">
+  <div *ngIf="isLoading">Siunčiami duomenys...</div>
+  <div *ngIf="!isLoading">
+    <div *ngFor="let i of exercises" class="col-xs-6">
+      <div class="thumbnail">
+        <img alt="100%x200" data-src="holder.js/100%x200" src="{{i.exerciseImageFirst}}" data-holder-rendered="true" style="height: 150px; width: 49%; display: inline-block;">
+        <img alt="100%x200" data-src="holder.js/100%x200" src="{{i.exerciseImageSecond}}" data-holder-rendered="true" style="height: 150px; width: 49%; display: inline-block;">
+        <div class="caption">
+          <p>{{i.exerciseName}}</p>
+          <button (click)="editExercise(i)" class="btn btn-grey btn-default"><strong>Redaguoti</strong></button>
+          <button disabled="" (click)="deleteExercise(i)" class="btn pull-right btn-warning"><strong>Šalinti</strong></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
